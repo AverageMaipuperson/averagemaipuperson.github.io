@@ -1,4 +1,4 @@
-import { initCppJs, Test } from './test.js'; 
+import { initCppJs, Test } from './native/test.h'; 
 
 async function run() {
     await initCppJs({ path: './' }); 
