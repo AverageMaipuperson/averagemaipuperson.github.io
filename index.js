@@ -1,4 +1,4 @@
-import { initCppJs, Test } from './native/MathUtils.h';
+import { initCppJs, Test } from './native/test.h';
 
 async function run() {
     await initCppJs();
