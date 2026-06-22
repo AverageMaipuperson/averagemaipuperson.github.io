@@ -1,15 +1,10 @@
-import { initCppJs, Test } from './native/test.h';
+import { initCppJs, Test } from './test.js'; 
 
 async function run() {
-    await initCppJs();
+    await initCppJs({ path: './' }); 
 
-    const calculator = new Test();
-    
-    const sum = calculator.add(40, 2);
-    const squared = calculator.square(5.5);
-
-    console.log(`Sum from C++: ${sum}`);
-    console.log(`Square from C++: ${squared}`);
+    const instance = new Test();
+    console.log("C++ working!", instance);
 }
 
 run();
