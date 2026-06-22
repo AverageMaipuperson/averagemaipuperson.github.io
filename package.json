@@ -1,0 +1,11 @@
+{
+  "name": "my-cpp-js-project",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "cppjs build"
+  },
+  "dependencies": {
+    "cpp.js": "latest"
+  }
+}
