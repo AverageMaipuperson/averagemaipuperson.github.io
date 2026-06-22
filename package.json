@@ -1,11 +1,11 @@
 {
-  "name": "my-cpp-js-project",
+  "name": "averagemaipuperson-cpp-app",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "cppjs build"
+    "build": "cppjs build -p wasm"
   },
   "dependencies": {
-    "cpp.js": "latest"
+    "cpp.js": "^2.0.0-beta"
   }
 }
