@@ -3,6 +3,7 @@ const input = form.getElementById("file");
 
 form.addEventListener("submit", function(event) {
     event.preventDefault();
+    console.log("submitted");
     const version = document.getElementById("version").value;
 
     const reader = new FileReader();
