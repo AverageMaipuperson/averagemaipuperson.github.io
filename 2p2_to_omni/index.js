@@ -10,4 +10,6 @@ form.addEventListener("submit", function(event) {
         const contents = e.target.result;
         console.log(contents);
     }
+
+    reader.readAsText(input.files[0]);
 });
