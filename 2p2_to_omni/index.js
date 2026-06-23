@@ -7,14 +7,12 @@ form.addEventListener("submit", function(event) {
     event.preventDefault();
     console.log("submitted");
     const version = document.getElementById("version").value;
-    var contents = "";
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        contents = e.target.result;
+        const contents = e.target.result;
+        console.log(parser.xml_parse(contents));
     }
 
     reader.readAsText(input.files[0]);
-
-    console.log(parser.xml_parse(contents));
 });
