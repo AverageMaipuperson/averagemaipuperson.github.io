@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-const input = form.getElementById("file");
+const input = form.querySelector("#file");
 
 form.addEventListener("submit", function(event) {
     event.preventDefault();
