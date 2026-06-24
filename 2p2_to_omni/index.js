@@ -5,25 +5,25 @@ import * as validate from "./validate/validate.js"
 const form = document.querySelector("form");
 const input = form.querySelector("#file");
 
-function urlsafe_base64_decode(input) {
-    const filtered = input
+async function decomp(base64Str) {
+    const filter = base64Str
         .replace(/-/g, '+')
         .replace(/_/g, '/')
         .trim();
-    const bytes = Uint8Array.fromBase64(filtered, { alphabet: 'base64url' });
-    return new TextDecoder().decode(bytes);
-}
 
-async function decomp(cont)
-{
-    const cont2 = urlsafe_base64_decode(cont);
-    console.log(cont2);
+    const raw = atob(filter);
+    const len = raw.length;
+    
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = raw.charCodeAt(i);
+    }
 
     const ds = new DecompressionStream('gzip');
-    const response = new Response(cont2);
-    const cont3 = response.body.pipeThrough(ds);
+    const response = new Response(bytes);
+    const stream = response.body.pipeThrough(ds);
 
-    return await new Response(cont3).text();
+    return await new Response(stream).text();
 }
 
 form.addEventListener("submit", function(event) {
