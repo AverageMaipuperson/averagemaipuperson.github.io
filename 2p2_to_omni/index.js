@@ -40,14 +40,22 @@ form.addEventListener("submit", function(event) {
         console.log(string);
         if(string.startsWith("H4sIAAAAAAAA"))
         {
-            string = await decomp(string);
+            decomp(contents)
+            .then(function(newStr) {
+                const objectArr = gmd_parser.get_objects(newStr);
+                console.log(objectArr);
+                
+                if (!validate.validate_object_ids(objectArr, version)) {
+                    alert("Some errors happened. \n" + validate.errors.join());
+                }
+            });
+        } else {
+            console.log(string);
+
+            const objectArr = gmd_parser.get_objects(string);
+            console.log(objectArr);
+            if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
         }
-
-        console.log(string);
-
-        const objectArr = gmd_parser.get_objects(string);
-        console.log(objectArr);
-        if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
     }
 
     reader.readAsText(input.files[0]);
