@@ -37,6 +37,8 @@ form.addEventListener("submit", function(event) {
             string = decomp(string);
         }
 
+        console.log(string);
+
         const objectArr = gmd_parser.get_objects(string);
         console.log(objectArr);
         if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
