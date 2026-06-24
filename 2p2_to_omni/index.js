@@ -30,9 +30,9 @@ form.addEventListener("submit", function(event) {
     reader.onload = function(e) {
         const contents = e.target.result;
         const raw = new Uint8Array(contents);
-        if(bytes[0] === 0x1F && bytes[1] === 0x8B)
+        if(raw[0] === 0x1F && raw[1] === 0x8B)
         {
-            decomp(buffer).then(result => {
+            decomp(contents).then(result => {
                 console.log(result);
             }).catch(err => console.error("fail: ", err));
         } else {
