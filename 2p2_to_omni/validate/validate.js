@@ -21,6 +21,7 @@ export function validate_object_ids(arr, ver)
 {
     arr.forEach((obj, i) => {
         const data = gmd_parser.get_object_data(obj);
+        console.log(data);
         if(parseInt(data[1]) > version_to_threshold(ver))
         {
             errors.push("Invalid Object ID found: " + data[1]);

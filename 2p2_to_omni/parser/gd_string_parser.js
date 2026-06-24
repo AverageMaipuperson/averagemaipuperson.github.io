@@ -1,6 +1,6 @@
 export function get_objects(str)
 {
-    return str.split(";");
+    return str.split(";").shift();
 }
 
 export function get_object_data(obj)
