@@ -29,9 +29,9 @@ form.addEventListener("submit", function(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const contents = e.target.result;
-        if(contents.startsWith("H4sIAAAAAAAA"))
+        if(contents.split(',')[1].startsWith("H4sIAAAAAAAA"))
         {
-            console.log(decomp(contents));
+            console.log(decomp(contents.split(',')[1]));
         } else {
         
             const arr = parser.gmd_parse(contents);
