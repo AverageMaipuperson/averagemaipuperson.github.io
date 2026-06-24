@@ -29,22 +29,17 @@ form.addEventListener("submit", function(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const contents = e.target.result;
-        const raw = new Uint8Array(contents);
-        if(true)
+    
+        const arr = parser.gmd_parse(contents);
+        var string = parser.value_by_key(arr, 4);
+        if(string.startsWith("H4sIAAAAAAAA"))
         {
-            console.log(contents);
-            decomp(contents).then(result => {
-                console.log(result);
-            }).catch(err => console.error("fail: ", err));
-        } else {
-        
-            const arr = parser.gmd_parse(contents);
-            const string = parser.value_by_key(arr, 4);
-
-            const objectArr = gmd_parser.get_objects(string);
-            console.log(objectArr);
-            if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
+            string = decomp(string);
         }
+
+        const objectArr = gmd_parser.get_objects(string);
+        console.log(objectArr);
+        if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
     }
 
     reader.readAsText(input.files[0]);
