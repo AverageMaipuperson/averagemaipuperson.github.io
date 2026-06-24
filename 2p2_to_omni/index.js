@@ -10,6 +10,17 @@ function urlsafe_base64_decode(input) {
     return new TextDecoder().decode(bytes);
 }
 
+function decomp(cont)
+{
+    const cont2 = urlsafe_base64_decode(contents);
+
+    const ds = new DecompressionStream('gzip');
+    const response = new Response(cont2);
+    const cont3 = response.body.pipeThrough(ds);
+
+    return await new Response(cont3).text();
+}
+
 form.addEventListener("submit", function(event) {
     event.preventDefault();
     console.log("submitted");
@@ -20,14 +31,7 @@ form.addEventListener("submit", function(event) {
         const contents = e.target.result;
         if(contents.startsWith("H4sIAAAAAAAA"))
         {
-            const cont2 = urlsafe_base64_decode(contents);
-
-            const ds = new DecompressionStream('gzip');
-            const response = new Response(cont2);
-            const cont3 = response.body.pipeThrough(ds);
-
-            const decomp = await new Response(cont3).text();
-            console.log(decomp);
+            console.log(decomp(contents));
         } else {
         
             const arr = parser.gmd_parse(contents);
