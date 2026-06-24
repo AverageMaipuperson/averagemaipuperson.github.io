@@ -3,7 +3,7 @@ export function get_objects(str)
     return str.split(";");
 }
 
-export function get_object_data(arr, key)
+export function get_object_data(obj)
 {
-    return arr[key].split(",");
+    return obj.split(",");
 }

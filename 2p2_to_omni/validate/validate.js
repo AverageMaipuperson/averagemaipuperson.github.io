@@ -20,10 +20,10 @@ export function version_to_threshold(ver)
 export function validate_object_ids(arr, ver)
 {
     arr.forEach((obj, i) => {
-        const str = gmd_parser.get_object_data(obj, i);
-        if(parseInt(str[1]) > version_to_threshold(ver))
+        const data = gmd_parser.get_object_data(obj);
+        if(parseInt(data[1]) > version_to_threshold(ver))
         {
-            errors.push("Invalid Object ID found: " + str[1]);
+            errors.push("Invalid Object ID found: " + data[1]);
             return false;
         }
     });
