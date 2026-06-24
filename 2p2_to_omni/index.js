@@ -1,6 +1,6 @@
 import * as parser from "./parser/parser.js";
 import * as gmd_parser from "./parser/gd_string_parser.js";
-import * as validate from "./version_validate/validate.js"
+import * as validate from "./validate/validate.js"
 
 const form = document.querySelector("form");
 const input = form.querySelector("#file");
@@ -17,7 +17,7 @@ form.addEventListener("submit", function(event) {
         const string = parser.value_by_key(arr, 4);
 
         const objectArr = gmd_parser.get_objects(string);
-        
+        if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
     }
 
     reader.readAsText(input.files[0]);
