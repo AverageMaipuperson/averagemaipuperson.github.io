@@ -30,7 +30,7 @@ form.addEventListener("submit", function(event) {
     reader.onload = function(e) {
         const contents = e.target.result;
         const raw = new Uint8Array(contents);
-        if(raw[0] === 0x1F && raw[1] === 0x8B)
+        if(true)
         {
             decomp(contents).then(result => {
                 console.log(result);
