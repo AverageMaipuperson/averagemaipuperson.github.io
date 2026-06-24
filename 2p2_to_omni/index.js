@@ -13,6 +13,7 @@ function urlsafe_base64_decode(input) {
 async function decomp(cont)
 {
     const cont2 = urlsafe_base64_decode(cont);
+    console.log(cont2);
 
     const ds = new DecompressionStream('gzip');
     const response = new Response(cont2);
@@ -32,6 +33,7 @@ form.addEventListener("submit", function(event) {
     
         const arr = parser.gmd_parse(contents);
         var string = parser.value_by_key(arr, 4);
+        console.log(string);
         if(string.startsWith("H4sIAAAAAAAA"))
         {
             string = decomp(string);
