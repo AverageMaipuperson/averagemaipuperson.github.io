@@ -40,7 +40,7 @@ form.addEventListener("submit", function(event) {
         console.log(string);
         if(string.startsWith("H4sIAAAAAAAA"))
         {
-            string = decomp(string);
+            string = await decomp(string);
         }
 
         console.log(string);
