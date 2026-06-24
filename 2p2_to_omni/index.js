@@ -18,7 +18,7 @@ form.addEventListener("submit", function(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const contents = e.target.result;
-        if(contents.startsWith("H4sIAAAAAAAAC"))
+        if(contents.startsWith("H4sIAAAAAAAA"))
         {
             const cont2 = urlsafe_base64_decode(contents);
 
