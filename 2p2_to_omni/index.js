@@ -10,7 +10,7 @@ function urlsafe_base64_decode(input) {
     return new TextDecoder().decode(bytes);
 }
 
-function decomp(cont)
+async function decomp(cont)
 {
     const cont2 = urlsafe_base64_decode(contents);
 
