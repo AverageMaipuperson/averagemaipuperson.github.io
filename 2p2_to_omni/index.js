@@ -29,9 +29,12 @@ form.addEventListener("submit", function(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const contents = e.target.result;
-        if(contents.split(',')[1].startsWith("H4sIAAAAAAAA"))
+        const raw = new Uint8Array(contents);
+        if(bytes[0] === 0x1F && bytes[1] === 0x8B)
         {
-            console.log(decomp(contents.split(',')[1]));
+            decomp(buffer).then(result => {
+                console.log(result);
+            }).catch(err => console.error("fail: ", err));
         } else {
         
             const arr = parser.gmd_parse(contents);
