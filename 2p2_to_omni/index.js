@@ -41,6 +41,7 @@ form.addEventListener("submit", function(event) {
         if(string.startsWith("H4sIAAAAAAAA"))
         {
             decomp(contents).then((str) => {
+                console.log(str);
                 string = str;
             });
         }
