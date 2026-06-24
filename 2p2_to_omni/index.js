@@ -12,7 +12,7 @@ function urlsafe_base64_decode(input) {
 
 async function decomp(cont)
 {
-    const cont2 = urlsafe_base64_decode(contents);
+    const cont2 = urlsafe_base64_decode(cont);
 
     const ds = new DecompressionStream('gzip');
     const response = new Response(cont2);
