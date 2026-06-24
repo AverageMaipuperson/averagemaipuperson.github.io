@@ -11,7 +11,8 @@ form.addEventListener("submit", function(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const contents = e.target.result;
-        console.log(parser.xml_parse(contents));
+        const arr = parser.gmd_parse(contents);
+        console.log(parser.value_by_key(arr, 4));
     }
 
     reader.readAsText(input.files[0]);
