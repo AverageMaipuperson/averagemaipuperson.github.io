@@ -32,6 +32,7 @@ form.addEventListener("submit", function(event) {
         const raw = new Uint8Array(contents);
         if(true)
         {
+            console.log(contents);
             decomp(contents).then(result => {
                 console.log(result);
             }).catch(err => console.error("fail: ", err));
