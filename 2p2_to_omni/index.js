@@ -5,6 +5,11 @@ import * as validate from "./validate/validate.js"
 const form = document.querySelector("form");
 const input = form.querySelector("#file");
 
+function urlsafe_base64_decode(input) {
+    const bytes = Uint8Array.fromBase64(input, { alphabet: 'base64url' });
+    return new TextDecoder().decode(bytes);
+}
+
 form.addEventListener("submit", function(event) {
     event.preventDefault();
     console.log("submitted");
@@ -13,12 +18,25 @@ form.addEventListener("submit", function(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const contents = e.target.result;
-        const arr = parser.gmd_parse(contents);
-        const string = parser.value_by_key(arr, 4);
+        if(contents.startsWith("H4sIAAAAAAAAC"))
+        {
+            const cont2 = urlsafe_base64_decode(contents);
 
-        const objectArr = gmd_parser.get_objects(string);
-        console.log(objectArr);
-        if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
+            const ds = new DecompressionStream('gzip');
+            const response = new Response(cont2);
+            const cont3 = response.body.pipeThrough(ds);
+
+            const decomp = await new Response(cont3).text();
+            console.log(decomp);
+        } else {
+        
+            const arr = parser.gmd_parse(contents);
+            const string = parser.value_by_key(arr, 4);
+
+            const objectArr = gmd_parser.get_objects(string);
+            console.log(objectArr);
+            if(!validate.validate_object_ids(objectArr, version)) alert("Some errors happened. \n" + validate.errors.join());
+        }
     }
 
     reader.readAsText(input.files[0]);
