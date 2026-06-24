@@ -6,7 +6,11 @@ const form = document.querySelector("form");
 const input = form.querySelector("#file");
 
 function urlsafe_base64_decode(input) {
-    const bytes = Uint8Array.fromBase64(input, { alphabet: 'base64url' });
+    const filtered = input
+        .replace(/-/g, '+')
+        .replace(/_/g, '/')
+        .trim();
+    const bytes = Uint8Array.fromBase64(filtered, { alphabet: 'base64url' });
     return new TextDecoder().decode(bytes);
 }
 
